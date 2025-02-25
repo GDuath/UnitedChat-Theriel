@@ -1,0 +1,20 @@
+name: UnitedChat
+version: '1.0'
+main: org.unitedlands.unitedchat.UnitedChat
+api-version: 1.21
+authors: [ Maroon28 ]
+depend: [ Towny ]
+softdepend: [PlaceholderAPI]
+commands:
+  gradient:
+    description: Main gradient command, used to set gradients, or enable and disable them
+    permission: united.chat.gradient
+    permission-message: '&c&lU&f&lL &8&l» &cYou don''t have permission.'
+    aliases:
+      - gradient
+      - gradientchat
+  unitedchat:
+    description: Toggles chat features
+    aliases:
+      - unitedchat
+      - uc
