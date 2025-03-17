@@ -2,15 +2,24 @@ package org.unitedlands.unitedchat.player;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
+
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.unitedlands.unitedchat.Formatter;
 import org.unitedlands.unitedchat.UnitedChat;
 
+import com.palmergames.adventure.text.Component;
 import com.palmergames.bukkit.TownyChat.events.AsyncChatHookEvent;
+
+import io.papermc.paper.event.player.AsyncChatEvent;
+
+import static net.kyori.adventure.text.minimessage.tag.resolver.Placeholder.component;
 
 import java.util.List;
 
@@ -44,6 +53,7 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onChat(AsyncChatHookEvent event) {
+        
         Player player = event.getPlayer();
 
         String message = event.getMessage();

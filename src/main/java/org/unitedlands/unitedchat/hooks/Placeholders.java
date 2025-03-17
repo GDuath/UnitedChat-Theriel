@@ -2,15 +2,19 @@ package org.unitedlands.unitedchat.hooks;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import me.clip.placeholderapi.expansion.Relational;
+
 import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.unitedlands.unitedchat.UnitedChat;
+import org.unitedlands.unitedchat.managers.ChatSettingsManager;
 import org.unitedlands.unitedchat.player.ChatFeature;
 
-public class Placeholders extends PlaceholderExpansion {
+public class Placeholders extends PlaceholderExpansion implements Relational {
     @Override
     public @NotNull String getIdentifier() {
         return "unitedchat";
@@ -32,38 +36,41 @@ public class Placeholders extends PlaceholderExpansion {
     }
 
     private final UnitedChat plugin;
+    private final ChatSettingsManager chatSettingsManager;
 
-    public Placeholders(UnitedChat plugin) {
+    public Placeholders(UnitedChat plugin, ChatSettingsManager chatSettingsManager) {
         this.plugin = plugin;
+        this.chatSettingsManager = chatSettingsManager;
     }
 
     @Override
     public String onRequest(OfflinePlayer player, @NotNull String params) {
 
         String[] args = PlaceholderAPI.setBracketPlaceholders(player, params).split("_");
-        ChatFeature feature = ChatFeature.valueOf(args[0].toUpperCase());
+        String feature = args[0];
+
         if (args.length < 2)
             return "";
         String innerPlaceholder = args[1];
-
-        if (isChatFeatureEnabled(feature, player)) {
-            if (feature == ChatFeature.PREFIXES)
-                return innerPlaceholder; // prefixes are built in with a space
-            return innerPlaceholder + " "; // other stuff isn't
+        if (plugin.getChatSettingsManager().getKeyValue(player.getPlayer(), feature).equalsIgnoreCase("on")) {
+            return innerPlaceholder.trim() + " ";
         } else
             return ""; // disabled, return empty.
     }
 
-    public boolean isChatFeatureEnabled(ChatFeature feature, OfflinePlayer player) {
-        if (player.getPlayer() == null)
-            return false;
-        PersistentDataContainer pdc = player.getPlayer().getPersistentDataContainer();
-        NamespacedKey key = new NamespacedKey(plugin, feature.toString());
-        // features are on by default, which means it wasn't ever toggled before if
-        // there is no key.
-        if (!pdc.has(key))
-            return true;
-        return pdc.get(key, PersistentDataType.INTEGER) == 1;
+    @Override
+    public String onPlaceholderRequest(Player one, Player two, String params) {
+        // prefix_{vault_prefix}
+        String[] args = PlaceholderAPI.setBracketPlaceholders(two, params).split("_");
+        String feature = args[0];
+        
+        if (args.length < 2)
+            return "";
+        String innerPlaceholder = args[1];
+        if (plugin.getChatSettingsManager().getKeyValue(one.getPlayer(), feature).equalsIgnoreCase("on")) {
+            return innerPlaceholder.trim() + " ";
+        } else
+            return ""; // disabled, return empty.
     }
 
 }

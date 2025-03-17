@@ -20,14 +20,14 @@ public class UnitedChat extends JavaPlugin {
     @Override
     public void onEnable() {
 
+        chatMessageManager = new ChatMessageManager(this);
+        chatSettingsManager = new ChatSettingsManager(this);
+
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null) {
             getLogger().warning("[Exception] PlaceholderAPI is required!");
             Bukkit.getPluginManager().disablePlugin(this);
         }
-        new Placeholders(this).register();
-
-        chatMessageManager = new ChatMessageManager(this);
-        chatSettingsManager = new ChatSettingsManager(this);
+        new Placeholders(this, chatSettingsManager).register();
 
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         

@@ -15,11 +15,13 @@ public class ChatToggleCommandCompleter implements TabCompleter {
 
     private final UnitedChat plugin;
 
-    private final List<String> chatFeatureCommands = Arrays.asList("reset", "prefixes", "ranks", "broadcasts", "games", "gradients");
-    private final List<String> chatToggleCommands = Arrays.asList("off", "on");
+    private final List<String> chatCommands = Arrays.asList("reset", "toggle");
+    private final List<String> chatFeatures;
+    private final List<String> toggleCommands = Arrays.asList("off", "on");
 
     public ChatToggleCommandCompleter(UnitedChat plugin) {
         this.plugin = plugin;
+        chatFeatures = plugin.getConfig().getStringList("features");
     }
 
     @Override
@@ -33,11 +35,15 @@ public class ChatToggleCommandCompleter implements TabCompleter {
 
         switch (args.length) {
             case 1:
-                options = chatFeatureCommands;
+                options = chatCommands;
                 break;
             case 2:
-                if (!args[1].equalsIgnoreCase("reset"))
-                    options = chatToggleCommands;
+                if (!args[0].equalsIgnoreCase("reset"))
+                    options = chatFeatures;
+                break;
+            case 3:
+                options = toggleCommands;
+                break;
         }
 
         List<String> completions = null;

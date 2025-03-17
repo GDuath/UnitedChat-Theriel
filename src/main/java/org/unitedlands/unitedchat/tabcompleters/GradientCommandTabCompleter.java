@@ -16,7 +16,7 @@ public class GradientCommandTabCompleter implements TabCompleter {
 
     private final UnitedChat plugin;
 
-    private final List<String> gradientCommands = Arrays.asList("info", "toggle", "set");
+    private final List<String> gradientCommands = Arrays.asList("toggle", "set");
     private final List<String> gradientToggleCommands = Arrays.asList("off", "on");
 
     public GradientCommandTabCompleter(UnitedChat plugin) {
