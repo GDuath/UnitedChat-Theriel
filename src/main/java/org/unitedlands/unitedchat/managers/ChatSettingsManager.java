@@ -1,5 +1,7 @@
 package org.unitedlands.unitedchat.managers;
 
+import javax.annotation.Nonnull;
+
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -57,6 +59,20 @@ public class ChatSettingsManager {
         PersistentDataContainer pdc = player.getPersistentDataContainer();
         if (pdc.has(key))
             pdc.remove(key);
+    }
+
+    public void setKeyValue(Player player, String name, String value) {
+        NamespacedKey key = getKey(name);
+        PersistentDataContainer pdc = player.getPersistentDataContainer();
+        pdc.set(key, PersistentDataType.STRING, value);
+    }
+
+    public @Nonnull String getKeyValue(Player player, String name) {
+        NamespacedKey key = getKey(name);
+        PersistentDataContainer pdc = player.getPersistentDataContainer();
+        if (!pdc.has(key))
+            return "";
+        return pdc.get(key, PersistentDataType.STRING);
     }
 
     private NamespacedKey getKey(String name) {

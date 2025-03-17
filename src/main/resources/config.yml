@@ -10,6 +10,11 @@ Presets:
   wiretap: "#8A2387:#E94057:#F27121"
   magic: "#59C173:#a17fe0:#5D26C1"
   redsunset: "#355C7D:#6C5B7B:#C06C84"
+features:
+  - tabprefix
+  - tabnation
+  - tabtown
+  - chatgames
 messages:
   motd:
     - '<gradient:#ffffff:#ff5555>------------------------------</gradient>'
@@ -38,6 +43,6 @@ messages:
   no-perm-gradient: '<red>You don''t have permission to set a custom hex color gradient.'
   invalid-gradient: "<red>Couldn't find a gradient preset matching this name."
   chat-toggle-command: '<yellow>Use /chat [Chat Feature] on/off'
-  toggled-feature: '<green><feature> successfully set to <toggle>!'
-  invalid-feature: '<red>Invalid argument! Please pick: prefixes, ranks, broadcasts, games'
+  toggled-feature: '<feature> successfully set to <toggle>!'
+  invalid-feature: '<red>Invalid feature.'
   reset: '<green>UnitedChat settings reset.'
