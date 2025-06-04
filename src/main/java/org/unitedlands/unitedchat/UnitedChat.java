@@ -5,6 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.unitedlands.unitedchat.commands.ChatToggleCommand;
 import org.unitedlands.unitedchat.commands.GradientCommand;
 import org.unitedlands.unitedchat.hooks.Placeholders;
+import org.unitedlands.unitedchat.managers.BroadcastManager;
 import org.unitedlands.unitedchat.managers.ChatMessageManager;
 import org.unitedlands.unitedchat.managers.ChatSettingsManager;
 import org.unitedlands.unitedchat.player.PlayerListener;
@@ -38,6 +39,9 @@ public class UnitedChat extends JavaPlugin {
         getCommand("unitedchat").setTabCompleter(new ChatToggleCommandCompleter(this));
         
         saveDefaultConfig();
+
+        int intervalTicks = getConfig().getInt("broadcaster.interval", 10) * 60 * 20;
+        new BroadcastManager(this).runTaskTimer(this, intervalTicks, intervalTicks);
 
         getLogger().info("UnitedChat initialized.");
     }

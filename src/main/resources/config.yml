@@ -14,6 +14,32 @@ features:
 
 ###################################################
 # +---------------------------------------------+ #
+# |             Auto-Broadcaster                | #
+# +---------------------------------------------+ #
+###################################################
+
+broadcaster:
+  # Time (in minutes) between each broadcast.
+  interval: 15
+  messages:
+    1:
+      - "<red><st>+|✦              </st><red><bold>[ <white><bold>Did You Know? </bold></white><red>]</bold><st>              |✦+</st>"
+      - "<white>                      We have a Discord!</white>"
+      - "<white>                   Join with <yellow>/discord</yellow></white>"
+      - "<red><st>+|✦</st><st>                        +✦+                        </st><st>|✦+</st>"
+    2:
+      - "<red><st>+|✦              </st><red><bold>[ <white><bold>Remember! </bold></white><red>]</bold><st>              |✦+</st>"
+      - "<white>             Remember to support our server.</white>"
+      - "<white>             Vote for us with <yellow>/vote</yellow></white>"
+      - "<red><st>+|✦</st><st>                        +✦+                        </st><st>|✦+</st>"
+    3:
+      - "<red><st>+|✦              </st><red><bold>[ <white><bold>Remember! </bold></white><red>]</bold><st>              |✦+</st>"
+      - "<white>                Please report all bugs.</white>"
+      - "<white>             Open a ticket on <yellow>/discord</yellow></white>"
+      - "<red><st>+|✦</st><st>                        +✦+                        </st><st>|✦+</st>"
+
+###################################################
+# +---------------------------------------------+ #
 # |                 Gradients                   | #
 # +---------------------------------------------+ #
 ###################################################
@@ -66,7 +92,7 @@ messages:
     - '<gradient:#ffffff:#ff5555>------------------------------</gradient>'
 
 # +---------------------------------------------+ #
-# |               War Messages                  | #
+# |            Gradient Messages                | #
 # +---------------------------------------------+ #
 
   gradient-changed: '<green>Gradient changed.'

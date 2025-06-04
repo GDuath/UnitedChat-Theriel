@@ -6,7 +6,7 @@
 
     <groupId>org.unitedlands</groupId>
     <artifactId>UnitedChat</artifactId>
-    <version>3.0</version>
+    <version>3.1</version>
     <packaging>jar</packaging>
 
     <name>UnitedChat</name>
@@ -96,7 +96,7 @@
         <dependency>
             <groupId>com.palmergames.bukkit</groupId>
             <artifactId>TownyChat</artifactId>
-            <version>0.118</version>
+            <version>0.117</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
