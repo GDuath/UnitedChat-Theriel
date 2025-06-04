@@ -1,4 +1,25 @@
+###################################################
+# +---------------------------------------------+ #
+# |               Chat Features                 | #
+# +---------------------------------------------+ #
+###################################################
+
+# Options for toggling on or off.
+
+features:
+  - tabprefix
+  - tabnation
+  - tabtown
+  - chatgames
+
+###################################################
+# +---------------------------------------------+ #
+# |                 Gradients                   | #
+# +---------------------------------------------+ #
+###################################################
+
 Presets:
+  # Pre-configured gradients that can be equipped with an alias rather than typing out the hexes.
   # #hex1:#hex2:#hex3....
   rainbow: "#e07870:#e0aa70:#e3de84:#a3e391:#8de0c1:#8fd2e3:#938de0:#c491e3"
   dragonfruit: "#ff2c2c:#ff005d:#ff008f:#ff2dc3:#ff57f5"
@@ -10,12 +31,27 @@ Presets:
   wiretap: "#8A2387:#E94057:#F27121"
   magic: "#59C173:#a17fe0:#5D26C1"
   redsunset: "#355C7D:#6C5B7B:#C06C84"
-features:
-  - tabprefix
-  - tabnation
-  - tabtown
-  - chatgames
+
+###################################################
+# +---------------------------------------------+ #
+# |                  Messages                   | #
+# +---------------------------------------------+ #
+###################################################
+
+# System messages
+
 messages:
+  prefix: '<bold><red>U</red><white>L</white></bold> Chat <dark_gray>» '
+  chat-toggle-command: '<yellow>Use /chat [Chat Feature] on/off'
+  toggled-feature: '<feature> successfully set to <toggle>!'
+  invalid-feature: '<red>Invalid feature.'
+  reset: '<green>UnitedChat settings reset.'
+  no-perm: '<red>You don''t have permission to use this command.'
+
+# +---------------------------------------------+ #
+# |               Join Messages                 | #
+# +---------------------------------------------+ #
+
   motd:
     - '<gradient:#ffffff:#ff5555>------------------------------</gradient>'
     - '                     <bold><red>UNITED</red><white>LANDS</white></bold>'
@@ -28,7 +64,11 @@ messages:
     - '             <red>Welcome to <red><bold>United<white><bold>Lands <yellow><italic>%player_name%&c!'
     - '    <red>There are currently <white>%server_online% <red>players online.'
     - '<gradient:#ffffff:#ff5555>------------------------------</gradient>'
-  prefix: '<bold><red>U</red><white>L</white></bold> Chat <dark_gray>» '
+
+# +---------------------------------------------+ #
+# |               War Messages                  | #
+# +---------------------------------------------+ #
+
   gradient-changed: '<green>Gradient changed.'
   gradient-on: '<green>Gradient enabled.'
   gradient-command: '<yellow>Use /gradient [toggle] | [preset] | [hexcolor1] [hexcolor2] %player_name%'
@@ -39,10 +79,5 @@ messages:
   gradient-is-off: '<red>Your gradient is disabled.'
   gradient-is-on: '<red>Your gradient is enabled.'
   current-gradient: '<red>Your current gradient is: <gradient>'
-  no-perm: '<red>You don''t have permission to use this command.'
   no-perm-gradient: '<red>You don''t have permission to set a custom hex color gradient.'
   invalid-gradient: "<red>Couldn't find a gradient preset matching this name."
-  chat-toggle-command: '<yellow>Use /chat [Chat Feature] on/off'
-  toggled-feature: '<feature> successfully set to <toggle>!'
-  invalid-feature: '<red>Invalid feature.'
-  reset: '<green>UnitedChat settings reset.'
