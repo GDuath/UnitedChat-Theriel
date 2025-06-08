@@ -1,11 +1,13 @@
 package org.unitedlands.unitedchat.commands;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.unitedlands.unitedchat.UnitedChat;
+import org.unitedlands.unitedchat.managers.BroadcastManager;
 import org.unitedlands.unitedchat.player.ChatFeature;
 
 import net.luckperms.api.LuckPerms;
@@ -31,47 +33,65 @@ public class ChatToggleCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
-            @NotNull String[] args) {
+                             @NotNull String @NotNull [] args) {
+
+        if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
+            if (!sender.hasPermission("united.chat.admin")) {
+                sender.sendMessage(plugin.getChatMessageManager().getMessage("no-perm"));
+                return false;
+            }
+
+            plugin.reloadConfig();
+
+            // Reapply runtime configuration
+            Bukkit.getScheduler().cancelTasks(plugin);
+            int intervalTicks = plugin.getConfig().getInt("broadcaster.interval", 10) * 60 * 20;
+            new BroadcastManager(plugin).runTaskTimer(plugin, intervalTicks, intervalTicks);
+
+            sender.sendMessage(plugin.getChatMessageManager().getMessage("reloaded"));
+            return true;
+        }
+
         if (!(sender instanceof Player player)) {
             return true;
         }
 
         if (args.length == 0) {
+            player.sendMessage(plugin.getChatMessageManager().getMessage("chat-toggle-command"));
             return true;
-        } else if (args.length == 1) {
-            if (args[0].equalsIgnoreCase("reset")) {
-                handleReset(player);
-            }
-        } else if (args.length == 2) {
+        }
 
-        } else if (args.length == 3) {
+        if (args.length == 1 && args[0].equalsIgnoreCase("reset")) {
+            handleReset(player);
+            return true;
+        }
+
+        if (args.length == 3) {
             var feature = args[1];
             if (!chatFeatures.contains(feature)) {
                 player.sendMessage(plugin.getChatMessageManager().getMessage("invalid-feature"));
                 return false;
             }
 
-            Boolean toggleOn = args[2].equalsIgnoreCase("on");
+            boolean toggleOn = args[2].equalsIgnoreCase("on");
 
-            // Chat games need to be toggled via perms
             if (feature.equalsIgnoreCase("chatgames")) {
                 toggleChatGames(player, toggleOn);
                 return true;
             }
 
-            if (toggleOn) {
-                plugin.getChatSettingsManager().setKeyValue(player, feature, "on");
-            } else {
-                plugin.getChatSettingsManager().setKeyValue(player, feature, "off");
-            }
+            plugin.getChatSettingsManager().setKeyValue(player, feature, toggleOn ? "on" : "off");
 
             player.sendMessage(plugin.getChatMessageManager().getMessage("toggled-feature",
                     component("feature", text(feature)),
                     component("toggle", text(toggleOn ? "on" : "off"))));
+            return true;
         }
 
+        player.sendMessage(plugin.getChatMessageManager().getMessage("chat-toggle-command"));
         return true;
     }
+
 
     private void toggleChatGames(Player player, Boolean toggleOn) {
 

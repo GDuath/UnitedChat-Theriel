@@ -35,9 +35,10 @@ public class UnitedChat extends JavaPlugin {
         getCommand("gradient").setExecutor(new GradientCommand(this, chatMessageManager, chatSettingsManager));
         getCommand("gradient").setTabCompleter(new GradientCommandTabCompleter(this));
 
-        getCommand("unitedchat").setExecutor(new ChatToggleCommand(this));
+        var chatToggle = new ChatToggleCommand(this);
+        getCommand("unitedchat").setExecutor(chatToggle);
         getCommand("unitedchat").setTabCompleter(new ChatToggleCommandCompleter(this));
-        
+
         saveDefaultConfig();
 
         int intervalTicks = getConfig().getInt("broadcaster.interval", 10) * 60 * 20;

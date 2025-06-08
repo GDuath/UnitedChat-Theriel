@@ -1,58 +1,55 @@
 package org.unitedlands.unitedchat.tabcompleters;
 
-import java.util.Arrays;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.unitedlands.unitedchat.UnitedChat;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
-import org.jetbrains.annotations.Nullable;
-import org.unitedlands.unitedchat.UnitedChat;
-
 public class ChatToggleCommandCompleter implements TabCompleter {
 
-    private final UnitedChat plugin;
-
-    private final List<String> chatCommands = Arrays.asList("reset", "toggle");
+    private final List<String> baseCommands = new ArrayList<>();
     private final List<String> chatFeatures;
-    private final List<String> toggleCommands = Arrays.asList("off", "on");
+    private final List<String> toggleOptions = List.of("on", "off");
 
     public ChatToggleCommandCompleter(UnitedChat plugin) {
-        this.plugin = plugin;
-        chatFeatures = plugin.getConfig().getStringList("features");
+        this.chatFeatures = plugin.getConfig().getStringList("features");
+
+        baseCommands.add("reset");
+        baseCommands.add("reload");
     }
 
     @Override
-    public @Nullable List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, String[] args) {
         List<String> options = null;
         String input = args[args.length - 1];
 
-        if (args.length == 0)
-            return null;
-
         switch (args.length) {
-            case 1:
-                options = chatCommands;
-                break;
-            case 2:
-                if (!args[0].equalsIgnoreCase("reset"))
+            case 1 -> {
+                options = new ArrayList<>(baseCommands);
+                options.addAll(chatFeatures);
+            }
+            case 2 -> {
+                if (!args[0].equalsIgnoreCase("reset") && !args[0].equalsIgnoreCase("reload")) {
                     options = chatFeatures;
-                break;
-            case 3:
-                options = toggleCommands;
-                break;
+                }
+            }
+            case 3 -> options = toggleOptions;
         }
 
-        List<String> completions = null;
         if (options != null) {
-            completions = options.stream().filter(s -> s.toLowerCase().startsWith(input.toLowerCase()))
+            return options.stream()
+                    .filter(opt -> opt.toLowerCase().startsWith(input.toLowerCase()))
+                    .sorted()
                     .collect(Collectors.toList());
-            Collections.sort(completions);
         }
-        return completions;
-    }
 
+        return Collections.emptyList();
+    }
 }

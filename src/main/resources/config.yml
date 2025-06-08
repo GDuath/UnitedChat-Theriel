@@ -23,21 +23,47 @@ broadcaster:
   interval: 15
   messages:
     1:
-      - "<red><st>+|✦              </st><red><bold>[ <white><bold>Did You Know? </bold></white><red>]</bold><st>              |✦+</st>"
-      - "<white>                      We have a Discord!</white>"
-      - "<white>                   Join with <yellow>/discord</yellow></white>"
-      - "<red><st>+|✦</st><st>                        +✦+                        </st><st>|✦+</st>"
+      - "<red><st>+|✦                 </st><red><bold>[ <white><bold>Did You Know? </bold></white><red>]</bold><st>           |✦+</st>"
+      - ""
+      - "<white>                     We have a Discord!</white>"
+      - "<white>                     Join with <yellow>/discord</yellow></white>"
+      - ""
+      - "<red><st>+|✦</st><st>                        +✦+                         </st><st>|✦+</st>"
     2:
-      - "<red><st>+|✦              </st><red><bold>[ <white><bold>Remember! </bold></white><red>]</bold><st>              |✦+</st>"
+      - "<red><st>+|✦                  </st><red><bold>[ <white><bold>Remember! </bold></white><red>]</bold><st>               |✦+</st>"
+      - ""
       - "<white>             Remember to support our server.</white>"
-      - "<white>             Vote for us with <yellow>/vote</yellow></white>"
+      - "<white>                  Vote for us with <yellow>/vote</yellow></white>"
+      - ""
       - "<red><st>+|✦</st><st>                        +✦+                        </st><st>|✦+</st>"
     3:
-      - "<red><st>+|✦              </st><red><bold>[ <white><bold>Remember! </bold></white><red>]</bold><st>              |✦+</st>"
-      - "<white>                Please report all bugs.</white>"
-      - "<white>             Open a ticket on <yellow>/discord</yellow></white>"
+      - "<red><st>+|✦                  </st><red><bold>[ <white><bold>Remember! </bold></white><red>]</bold><st>               |✦+</st>"
+      - ""
+      - "<white>                   Please report all bugs.</white>"
+      - "<white>                  Open a ticket on <yellow>/discord</yellow></white>"
+      - ""
       - "<red><st>+|✦</st><st>                        +✦+                        </st><st>|✦+</st>"
-
+    4:
+      - "<red><st>+|✦                  </st><red><bold>[ <white><bold>Remember! </bold></white><red>]</bold><st>               |✦+</st>"
+      - ""
+      - "<white>          You can earn money through jobs.</white>"
+      - "<white>          Find employment with <yellow>/jobs browse</yellow></white>"
+      - ""
+      - "<red><st>+|✦</st><st>                        +✦+                        </st><st>|✦+</st>"
+    5:
+      - "<red><st>+|✦                  </st><red><bold>[ <white><bold>Remember! </bold></white><red>]</bold><st>               |✦+</st>"
+      - ""
+      - "<white>                  We have a rules page.</white>"
+      - "<white>                   Read them at <yellow>/rules</yellow></white>"
+      - ""
+      - "<red><st>+|✦</st><st>                        +✦+                        </st><st>|✦+</st>"
+    6:
+      - "<red><st>+|✦                </st><red><bold>[ <white><bold>Who Are We? </bold></white><red>]</bold><st>                |✦+</st>"
+      - ""
+      - "<white>           We are a Towny Earth server.</white>"
+      - "<white>   With a friendly community and custom plugins!</white>"
+      - ""
+      - "<red><st>+|✦</st><st>                          +✦+                        </st><st>|✦+</st>"
 ###################################################
 # +---------------------------------------------+ #
 # |                 Gradients                   | #
@@ -69,6 +95,7 @@ Presets:
 messages:
   prefix: '<bold><red>U</red><white>L</white></bold> Chat <dark_gray>» '
   chat-toggle-command: '<yellow>Use /chat [Chat Feature] on/off'
+  reloaded: '<green>Config reloaded.'
   toggled-feature: '<feature> successfully set to <toggle>!'
   invalid-feature: '<red>Invalid feature.'
   reset: '<green>UnitedChat settings reset.'
