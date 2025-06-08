@@ -21,6 +21,12 @@ features:
 broadcaster:
   # Time (in minutes) between each broadcast.
   interval: 15
+  # Play a sound effect.
+  # Invalid or empty "" names will play no sound.
+  sound:
+    name: "minecraft:block.note_block.pling"
+    volume: 0.5
+    pitch: 1.2
   messages:
     1:
       - "<red><st>+|✦                 </st><red><bold>[ <white><bold>Did You Know? </bold></white><red>]</bold><st>           |✦+</st>"
