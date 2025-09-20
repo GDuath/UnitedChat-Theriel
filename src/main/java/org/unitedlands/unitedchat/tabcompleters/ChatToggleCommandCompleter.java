@@ -22,7 +22,7 @@ public class ChatToggleCommandCompleter implements TabCompleter {
         this.chatFeatures = plugin.getConfig().getStringList("features");
 
         baseCommands.add("reset");
-        baseCommands.add("reload");
+        baseCommands.add("toggle");
     }
 
     @Override
@@ -33,7 +33,8 @@ public class ChatToggleCommandCompleter implements TabCompleter {
         switch (args.length) {
             case 1 -> {
                 options = new ArrayList<>(baseCommands);
-                options.addAll(chatFeatures);
+                if (sender.hasPermission("united.chat.admin"))
+                    options.add("reload");
             }
             case 2 -> {
                 if (!args[0].equalsIgnoreCase("reset") && !args[0].equalsIgnoreCase("reload")) {

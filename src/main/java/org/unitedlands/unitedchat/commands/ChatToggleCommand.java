@@ -8,12 +8,10 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.unitedlands.unitedchat.UnitedChat;
 import org.unitedlands.unitedchat.managers.BroadcastManager;
-import org.unitedlands.unitedchat.player.ChatFeature;
 
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.model.user.User;
-import net.luckperms.api.node.types.MetaNode;
 import net.luckperms.api.node.types.PermissionNode;
 
 import static net.kyori.adventure.text.Component.text;
