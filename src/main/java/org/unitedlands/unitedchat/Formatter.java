@@ -38,6 +38,7 @@ public class Formatter {
         return color(sectionRGB.serialize(gradientedComponent));
     }
 
+    @SuppressWarnings("deprecation")
     private String color(String string) {
         return ChatColor.translateAlternateColorCodes('$', string);
     }

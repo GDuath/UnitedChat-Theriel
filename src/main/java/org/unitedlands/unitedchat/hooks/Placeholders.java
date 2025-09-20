@@ -4,15 +4,11 @@ import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.Relational;
 
-import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-import org.bukkit.persistence.PersistentDataContainer;
-import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.unitedlands.unitedchat.UnitedChat;
 import org.unitedlands.unitedchat.managers.ChatSettingsManager;
-import org.unitedlands.unitedchat.player.ChatFeature;
 
 public class Placeholders extends PlaceholderExpansion implements Relational {
     @Override
@@ -36,6 +32,7 @@ public class Placeholders extends PlaceholderExpansion implements Relational {
     }
 
     private final UnitedChat plugin;
+    @SuppressWarnings("unused")
     private final ChatSettingsManager chatSettingsManager;
 
     public Placeholders(UnitedChat plugin, ChatSettingsManager chatSettingsManager) {
